@@ -1,0 +1,40 @@
+package algorithms;
+
+public class palindrome {
+	public static boolean isPalindrome(int x) {
+        // int to string
+        // make the reversed version of string
+        // compare two strings
+        // Time complexity : O(n)
+        // Space complexity : O(n)
+        String intToStr = String.valueOf(x);
+        int len = intToStr.length();
+        int i, j = 0;
+        char[] newArr = new char[len];
+
+        for (i = len-1; i >= 0; i--) {
+            newArr[j++] = intToStr.charAt(i);
+        }
+        // 1. compare each characther
+        for (i = 0; i<len; i++){
+            if (intToStr.charAt(i) != newArr[i]) {
+                return false;
+            }
+        }
+        return true;
+        // 2. change character array to string
+        // String cmpStr = String.valueOf(newArr);
+        // if (cmpStr.equals(intToStr)) {
+        //     return true;
+        // }
+        // return false;
+    }
+	
+	public static void main(String[] args) {
+		int num = 120;
+		boolean answer = true;
+		palindrome pal = new palindrome();
+		answer = pal.isPalindrome(num);
+		System.out.println(answer);
+	}
+}
