@@ -1,0 +1,56 @@
+import java.util.Stack;
+
+class Solution {
+    public boolean isValid(String s) {
+        // {[]}
+       
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("(", ")");
+        map.put("{", "}");
+        map.put("[", "]");
+
+        int len = s.length();
+
+         // 1st approach, when I thought the condition was only to check the neighbouring bracket
+        // for (int i = 0; i <= len-2; i++) {
+        //     System.out.println("i : " + String.valueOf(i));
+        //     System.out.println("i + 1 : " + String.valueOf(i+1));
+        //     System.out.println("1 : " + (map.get(String.valueOf(s.charAt(i)))));
+        //     System.out.println("2 : " + String.valueOf(s.charAt(i+1)));
+        //     if(!map.get(String.valueOf(s.charAt(i))).equals(String.valueOf(s.charAt(i+1)))){
+
+        //         return false;
+        //     }
+        //     i++;
+        // }
+
+        // 2nd approach to use stack. push when the next element does not match, pop when matches
+        /*Stack<String> stk = new Stack();
+        for (int i = 0; i < len; i++) {
+            if(i == 0 && stk.empty()) {
+                 System.out.println("0");
+                stk.push(String.valueOf(s.charAt(0)));
+            }
+            else{
+                if(!stk.empty() && map.get(stk.peek()).equals(String.valueOf(s.charAt(i)))) {
+                    System.out.println("peek : "+ stk.peek());
+                    System.out.println("value of : "+ String.valueOf(s.charAt(i)));
+                    System.out.println("1");
+                    stk.pop();
+                }
+                else{
+                     System.out.println("2");
+                    stk.push(String.valueOf(s.charAt(i)));
+                }
+            }
+        }
+        if(!stk.empty()){
+            System.out.println(stk.peek());
+            return false;
+        }*/
+        // 3rd approach to go O(n^2)
+        
+        return true;
+    }
+    
+}
