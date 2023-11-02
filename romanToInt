@@ -1,0 +1,65 @@
+import java.util.HashMap;
+
+class Solution {
+    public int romanToInt(String s) {
+        // 1. put matching symbol keys and values in a hashmap
+        // 2. reading the input string 's' from left to right by 2 characters at a time, when there is a matching value for the key, add the value and index + 2
+        // 3. else, add one value
+        // Time complexity of O(N)
+        // Space complexity of O(N)
+        // Thoughts 1) adding values one by one when it is not the two characters case such as 'IV', values searched in hashmap twice
+        // Thoughts 2) typecasting of char to string everytime is inefficient
+
+
+        int len = s.length();
+        String str = "";
+        int result = 0;
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("I", 1);
+        map.put("V", 5);
+        map.put("X", 10);
+        map.put("L", 50);
+        map.put("C", 100);
+        map.put("D", 500);
+        map.put("M", 1000);
+        map.put("IV", 4);
+        map.put("IX", 9);
+        map.put("XL", 40);
+        map.put("XC", 90);
+        map.put("CD", 400);
+        map.put("CM", 900);
+        
+        int i = 0;
+
+        while(i<len-1){
+            str = String.valueOf(s.charAt(i)) + String.valueOf(s.charAt(i+1));
+            if(map.containsKey(str)){
+                result += map.get(str);
+                i+=2;
+            }
+            else{
+                result += map.get(String.valueOf(s.charAt(i)));
+                i++;               
+            }
+            
+        }
+        if(i==len){
+            return result;
+        }
+        else if((len-i)%2==1){
+
+            result += map.get(String.valueOf(s.charAt(len-1)));
+        }
+        else{
+            str = String.valueOf(s.charAt(len-2)) + String.valueOf(s.charAt(len-1));
+            if(map.containsKey(str)){
+                result += map.get(String.valueOf(str));
+            }
+            else{
+                result += map.get(String.valueOf(s.charAt(len-2)));
+                result += map.get(String.valueOf(s.charAt(len-1)));
+            }
+        }
+        return result;
+    }
+}
